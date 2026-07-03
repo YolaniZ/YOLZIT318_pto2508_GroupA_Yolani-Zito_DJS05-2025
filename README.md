@@ -103,3 +103,194 @@ Since genre information is only exposed on `PREVIEW` by means of the specific `G
    - Description of main features and any known limitations.
 
 ---
+
+## Implementation Summary
+
+This project has been fully implemented with the following features:
+
+### Project Structure
+```
+src/
+├── App.jsx                 # Main app component with routing
+├── main.jsx               # React entry point
+├── components/
+│   └── SeasonNav.jsx      # Season navigation component
+├── pages/
+│   ├── HomePage.jsx       # Homepage with show listing
+│   └── ShowDetail.jsx     # Dynamic show detail page
+├── styles/
+│   └── main.css          # Global styles and responsive design
+└── utils/
+    ├── api.js            # API fetch functions
+    ├── constants.js      # Genre mapping and constants
+    └── helpers.js        # Utility functions for data manipulation
+```
+
+### Key Features Implemented
+
+1. **Dynamic Routing**
+   - Home page at `/`
+   - Show detail pages at `/show/:showId`
+   - Automatic redirect for invalid routes
+
+2. **Homepage with Search & Filter**
+   - Search by show title or description
+   - Filter by genre
+   - Filter state persisted in URL query parameters
+   - Shows grid display with lazy loading
+
+3. **Show Detail Page**
+   - Fetches show data by ID from URL parameters
+   - Displays comprehensive show information
+   - Collapsible season/episode navigation
+   - Back button preserves search and filter state
+
+4. **Season Navigation**
+   - Expand/collapse seasons
+   - Display episode count per season
+   - List episodes with images and descriptions
+   - Episode numbering
+
+5. **State Preservation**
+   - Search terms and genre filters saved in URL
+   - State restored when navigating back from detail page
+   - No data loss when switching between pages
+
+6. **Loading & Error Handling**
+   - Loading spinners during data fetch
+   - User-friendly error messages
+   - Empty states with helpful messages
+
+7. **Responsive Design**
+   - Works on mobile (320px+), tablet, and desktop
+   - CSS Grid for flexible layouts
+   - Touch-friendly interactive elements
+
+8. **Code Quality**
+   - JSDoc comments on all components and functions
+   - Clean modular structure
+   - Semantic HTML with ARIA labels
+   - Consistent formatting and naming conventions
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js 16+ and npm installed
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd YOLZIT318_pto2508_GroupA_Yolani-Zito_DJS05-2025
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+### Running Locally
+
+**Development Server:**
+```bash
+npm run dev
+```
+The app will be available at `http://localhost:5173` (or another port if 5173 is in use).
+
+**Build for Production:**
+```bash
+npm run build
+```
+Output will be in the `dist/` directory.
+
+**Preview Production Build:**
+```bash
+npm run preview
+```
+
+---
+
+## Main Features
+
+### Homepage
+- Displays all available podcasts in a responsive grid
+- Search functionality to filter shows by title or description
+- Genre filter dropdown to narrow results
+- Clicking a show card navigates to the detail page
+- Search and filter state preserved in URL
+
+### Show Detail Page
+- Displays full podcast information including:
+  - Large cover image
+  - Show title
+  - Description
+  - Genre tags
+  - Last updated date (formatted)
+- Expandable season navigation:
+  - Shows season title and episode count
+  - Click to expand/collapse episodes
+  - Each episode displays:
+    - Episode image
+    - Episode number
+    - Episode title
+    - Shortened description (150 characters)
+- Back button to return to homepage with state preserved
+
+### State Management
+- Uses React Router's `useSearchParams` to persist filters
+- URL contains search query and genre filter
+- Navigating back restores exact previous state
+- No data lost when switching between pages
+
+---
+
+## API Integration
+
+The app uses the Podcast API with three endpoints:
+
+- `GET https://podcast-api.netlify.app` - Returns array of show previews
+- `GET https://podcast-api.netlify.app/id/<ID>` - Returns full show data with seasons and episodes
+- `GET https://podcast-api.netlify.app/genre/<ID>` - Returns genre information
+
+---
+
+## Browser Compatibility
+
+- Chrome/Edge (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+---
+
+## Known Limitations
+
+- Genre filtering works on client-side only (API limitation)
+- Episode descriptions limited to 150 characters for UI optimization
+- Images may take time to load depending on internet speed
+- Some older browsers may have limited CSS Grid support
+
+---
+
+## Technologies Used
+
+- **React** 18.3.1 - UI framework
+- **React Router DOM** 6.26.1 - Client-side routing
+- **Vite** 5.4.2 - Build tool and dev server
+- **CSS3** - Styling with responsive design
+
+---
+
+## Author
+
+Yolani Zito (YOLZIT318)
+
+---
+
+## License
+
+This project is part of the CodeSpace Academy curriculum.
+
